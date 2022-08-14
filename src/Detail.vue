@@ -27,7 +27,7 @@ function useTodosQuery() {
         console.log(page)
         const response = await fetch(`https://swapi.dev/api/people?page=${page.value}`);
         const data = await response.json();
-        // console.log(data);
+        console.log(data);
         return data;
     },
     {

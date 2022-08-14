@@ -3,6 +3,8 @@
 </template>
 
 <script setup>
+
+
 import { useQueryProvider } from "vue-query";
 useQueryProvider();
 </script>

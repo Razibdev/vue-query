@@ -6,11 +6,25 @@ import Home from './Home.vue'
 import Details from './Details.vue';
 import Detail from './Detail.vue';
 import AddContent from './AddContent.vue';
+
+import ImageCompress from './components/ImageCompress.vue'
+import Image from './components/Image.vue'
 const routes = [
   {
     path: "/",
     name: "home",
     component: Home,
+  },
+  {
+    path: "/image",
+    name: "image",
+    component: ImageCompress,
+  },
+
+  {
+    path: "/img",
+    name: "img",
+    component: Image,
   },
 
   {
