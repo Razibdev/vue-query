@@ -1,4 +1,6 @@
 import { createApp } from 'vue'
+import { createStore } from "vuex";
+
 import App from './App.vue'
 import { VueQueryPlugin } from "vue-query";
 import {createRouter, createWebHistory} from 'vue-router';
@@ -6,6 +8,7 @@ import Home from './Home.vue'
 import Details from './Details.vue';
 import Detail from './Detail.vue';
 import AddContent from './AddContent.vue';
+import Test from './Test.vue'
 
 import ImageCompress from './components/ImageCompress.vue'
 import Image from './components/Image.vue'
@@ -19,6 +22,11 @@ const routes = [
     path: "/image",
     name: "image",
     component: ImageCompress,
+  },
+  {
+    path: "/test",
+    name: "test",
+    component: Test,
   },
 
   {
@@ -53,6 +61,44 @@ const router = createRouter({
 });
 
 
+
+
+
+// Create a new store instance.
+const store = createStore({
+  state() {
+    return {
+      notifications: [],
+    };
+  },
+  mutations: {
+    PUSH_NOTIFICATION(state, notification) {
+      state.notifications.push({
+        ...notification,
+        id: (Math.random().toString(36) + Date.now().toString(36)).substr(2),
+      });
+    },
+
+    REMOVE_NOTIFICATION(state, notificationToRemove){
+      state.notifications = state.notifications.filter(notification =>{
+        return notification.id != notificationToRemove.id;
+      })
+    }
+  },
+
+  actions: {
+    addNotification({ commit }, notification) {
+      commit("PUSH_NOTIFICATION", notification);
+    },
+
+    removeNotification({ commit }, notification) {
+      commit("REMOVE_NOTIFICATION", notification);
+    },
+  },
+});
+
+
+
 window.axios = require("axios");
 
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
@@ -60,4 +106,4 @@ window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 const token = `Bearer ${localStorage.getItem("token")}`;
 window.axios.defaults.headers.common["Authorization"] = token;
 
-createApp(App).use(router).use(VueQueryPlugin).mount('#app');
+createApp(App).use(router).use(store).use(VueQueryPlugin).mount("#app");
