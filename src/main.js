@@ -12,11 +12,17 @@ import Test from './Test.vue'
 
 import ImageCompress from './components/ImageCompress.vue'
 import Image from './components/Image.vue'
+import Infinity from './components/Infinity.vue'
 const routes = [
   {
     path: "/",
     name: "home",
     component: Home,
+  },
+  {
+    path: "/infinity",
+    name: "infinity",
+    component: Infinity,
   },
   {
     path: "/image",

@@ -10,21 +10,25 @@
        <div v-for="dat in data.results" :key="dat.name">
        <p>{{dat.name}}</p>
        </div>
-       <div @click="nextPageNow">Next</div>
-       <div @click="previous">Previous</div>
+       <!-- <div @click="nextPageNow">Next</div>
+       <div @click="previous">Previous</div> -->
+
+        <div ref="infinitescrolltrigger" id="scoll-trigger"></div>
+      <div class="circle-loader" v-if="showloader"></div>
     </div>
 </template>
 
 <script>
 import { useQuery } from "vue-query";
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 const page = ref(1);
+const showloader = ref(false);
+const infinitescrolltrigger = ref(null);
 // const pages = page.value;
 function useTodosQuery() {
   return useQuery(["todoss", page],
 
     async () => {
-        console.log(page)
         const response = await fetch(`https://swapi.dev/api/people?page=${page.value}`);
         const data = await response.json();
         console.log(data);
@@ -40,13 +44,39 @@ export default{
    
     const { isLoading, isError, data, error, isFetching } = useTodosQuery();
 
+   const scrollTrigger =() =>{
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if(entry.intersectionRatio > 0 && page.value < 1000) {
+              showloader.value = true;
+              setTimeout(() => {
+               page.value += 1;
+               const datas = [... data['results']];
+               console.log(datas)
+                showloader.value = false;
+              }, 10); // simulate Ajax-Call ;-)
+            }
+          });
+        });
+
+        observer.observe(infinitescrolltrigger.value);
+      }
+
+
+
+      onMounted(()=>{
+        scrollTrigger()
+      })
+
+
      const nextPageNow = () =>{
        page.value +=1;
     }
+
      const previous = () =>{
        page.value -=1;
     }
-    return { isLoading, isError, data, error, isFetching, nextPageNow, previous };
+    return { isLoading, isError, data, error, isFetching, nextPageNow, previous, showloader, scrollTrigger, infinitescrolltrigger };
   },
 }
 </script>

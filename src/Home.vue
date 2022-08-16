@@ -1,14 +1,5 @@
 <template>
-
-
-
-
     <div>
-      <div>
-        <CustomSelect :options="datac" />
-      </div>
-
-      
         <div v-if="isError">{{isError}}</div>
         <div v-if="isLoading">{{isLoading}}</div>
        <div v-for="da in data" :key="da.id">
@@ -19,7 +10,6 @@
 </template>
 
 <script>
-import CustomSelect from './components/CustomSelect.vue';
 
 import { useQuery } from "vue-query";
 
@@ -27,18 +17,14 @@ import { useQuery } from "vue-query";
 function useTodosQuery() {
   return useQuery("todos",
     async () => {
-        const response = await fetch('https://www.breakingbadapi.com/api/characters?limit=60');
+        const response = await fetch('https://www.breakingbadapi.com/api/characters?limit=20');
         const data = await response.json();
-        console.log(data.length)
+        console.log(data)
         return data;
     });
 }
 
 export default{
-  components:{
-CustomSelect
-
-  },
   data(){
     return{
       datac: ["cat", "dog", "rat"]
