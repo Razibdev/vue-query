@@ -13,6 +13,7 @@ import Test from './Test.vue'
 import ImageCompress from './components/ImageCompress.vue'
 import Image from './components/Image.vue'
 import Infinity from './components/Infinity.vue'
+import MobileBottomMenu from "./components/design/MobileBottomMenu.vue";
 const routes = [
   {
     path: "/",
@@ -57,6 +58,12 @@ const routes = [
     path: "/add",
     name: "add",
     component: AddContent,
+    props: true,
+  },
+  {
+    path: "/mobile",
+    name: "mobile-bottom",
+    component: MobileBottomMenu,
     props: true,
   },
 ];
