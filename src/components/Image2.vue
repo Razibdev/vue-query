@@ -11,13 +11,23 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue';
 
     export default{
-        setup(){
-            const imageVal = ref([]);
-            onMounted(()=>{
-       
+      data(){
+        return {
+          data:[]
+        }
+      },
+
+      methods:{
+        save(){
+          console.log(this.data);
+        }
+      },
+
+      mounted(){
+
+        let info = this;
         let refs = {};
         refs.imagePreviews = document.querySelector('#previews');
         refs.fileSelector = document.querySelector('input[type=file]');
@@ -64,9 +74,9 @@ import { onMounted, ref } from 'vue';
                 resolve(URL.createObjectURL(blob));
 
                 var fileName = Math.random();
-                  imageVal.value.push(new File([blob], fileName + ".webp"));
+                  info.data.push(new File([blob], fileName + ".webp"));
                   // console.log(new File([blob], fileName + ".webp"));
-                  console.log( imageVal.value)
+                  console.log(info.data)
 
                 //  f2.value = new File([blob], fileName + ".webp");
               }, "image/webp");
@@ -133,11 +143,7 @@ import { onMounted, ref } from 'vue';
           area.addEventListener("drop", function (e) { drop(callback, e); }, false);
         }
         setDragDrop(document.documentElement, processFiles);
-            });
-
-            return {imageVal}
-        },
-    
+       }
     }
 
 </script>

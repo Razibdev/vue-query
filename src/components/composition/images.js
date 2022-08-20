@@ -2,7 +2,7 @@ import { ref } from "vue";
 
 export default {
   upload(event) {
-    const f2 = ref(null);
+    const f2 = ref([]);
     try {
       var f = event.target.files[0];
       console.log(f);

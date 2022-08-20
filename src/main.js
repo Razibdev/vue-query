@@ -12,6 +12,7 @@ import Test from './Test.vue'
 
 import ImageCompress from './components/ImageCompress.vue'
 import Image from './components/Image.vue'
+import Image2 from './components/Image2.vue'
 import Infinity from './components/Infinity.vue'
 import MobileBottomMenu from "./components/design/MobileBottomMenu.vue";
 const routes = [
@@ -40,6 +41,11 @@ const routes = [
     path: "/img",
     name: "img",
     component: Image,
+  },
+  {
+    path: "/img2",
+    name: "img2",
+    component: Image2,
   },
 
   {
