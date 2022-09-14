@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import { createStore } from "vuex";
-
+window.VueUse;
 import App from './App.vue'
 import { VueQueryPlugin } from "vue-query";
 import {createRouter, createWebHistory} from 'vue-router';
@@ -9,6 +9,7 @@ import Details from './Details.vue';
 import Detail from './Detail.vue';
 import AddContent from './AddContent.vue';
 import Test from './Test.vue'
+import NearSearch from './NearSearch.vue';
 
 import ImageCompress from './components/ImageCompress.vue'
 import Image from './components/Image.vue'
@@ -20,6 +21,11 @@ const routes = [
     path: "/",
     name: "home",
     component: Home,
+  },
+  {
+    path: "/near",
+    name: "NearSearch",
+    component: NearSearch,
   },
   {
     path: "/infinity",

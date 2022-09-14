@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <form action="" @submit.prevent="formSubmit" style="width:500px; margin:0 auto;">
     <div class="form-group">
     <input type="text" v-model="name" class="form-control" placeholder="Enter name">
@@ -79,4 +79,4 @@ export default{
 
 }
 
-</script>
+</script> -->
