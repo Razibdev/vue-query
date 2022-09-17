@@ -16,6 +16,7 @@ import Image from './components/Image.vue'
 import Image2 from './components/Image2.vue'
 import Infinity from './components/Infinity.vue'
 import MobileBottomMenu from "./components/design/MobileBottomMenu.vue";
+import IntersectionObserver from "./IntersectionObserver.vue";
 const routes = [
   {
     path: "/",
@@ -76,6 +77,12 @@ const routes = [
     path: "/mobile",
     name: "mobile-bottom",
     component: MobileBottomMenu,
+    props: true,
+  },
+  {
+    path: "/observer",
+    name: "observer",
+    component: IntersectionObserver,
     props: true,
   },
 ];
